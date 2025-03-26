@@ -32,6 +32,11 @@ const router = createRouter({
       name: 'product-management',
       component: () => import('../views/admin/ProductManagement.vue'),
     },
+    {
+      path: '/attribute',
+      name: 'attribute',
+      component: () => import('../views/admin/ProductAttribute.vue'),
+    },
   ],
 })
 
