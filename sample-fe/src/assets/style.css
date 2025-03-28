@@ -39,7 +39,7 @@
   border-bottom: 2px solid #9d9d9d;
 }
 .product-management{
-  padding: 10px;
+  padding: 10px 0 0 30px;
   width:100%
 }
 .attribute-content{
@@ -50,4 +50,62 @@
   height: fit-content;
   max-height: 290px;
   overflow-y: auto;
+}
+.list-publisher{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.head-table{
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 32px 0 32px;
+  border-bottom: 1px solid #e2e2e2;
+  justify-items: center;
+  height: 35px;
+}
+.icon-add{
+  width: 25px;
+  height: 25px;
+}
+.add-attribute{
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.popup{
+  width: 400px;
+  height: 210px;
+  border-radius: 8px;
+  background:#ffff ;
+}
+.header-popup{
+  height: 50px;
+  border-radius: 8px 8px 0 0;
+  align-content: center;
+  text-align: end;
+  padding-right: 10px;
+}
+.content-popup{
+  align-content: center;
+  height: 160px;
+  padding: 10px;
+}
+
+/*common*/
+.text-align{
+    text-align: end;
+}
+.bold-text{
+  font-weight: 500;
+}
+.margin-right{
+  margin-right: 10px
 }

@@ -6,7 +6,8 @@ export interface Author {
 export interface Category {
   _id: string;
   name: string;
-}export interface Publisher {
+}
+export interface Publisher {
   _id: string;
   name: string;
 }
