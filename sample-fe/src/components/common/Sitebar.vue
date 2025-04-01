@@ -28,8 +28,10 @@
       <router-link to="/voucher">
         <button class="btn-sitebar option">Phiếu giảm giá</button>
       </router-link>
+      <router-link to="/discount">
+        <button class="btn-sitebar option">Đợt giảm giá</button>
+      </router-link>
 
-      <button class="btn-sitebar option">Đợt giảm giá</button>
     </div>
 
   </div>

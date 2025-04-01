@@ -8,6 +8,13 @@ export interface Voucher {
   quantity:number,
   startDate: Date,
   endDate: Date,
-  status: boolean
+  status: string
 }
-
+export interface Discount {
+  _id: string,
+  name: string,
+  discountRate:number,
+  startDate: Date,
+  endDate: Date,
+  status:string
+}

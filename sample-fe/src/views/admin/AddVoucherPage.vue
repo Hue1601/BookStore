@@ -102,7 +102,6 @@ const formattedStartDate = computed({
   }
 });
 
-
 const formattedEndDate = computed({
   get: () => {
     const date = endDate.value;

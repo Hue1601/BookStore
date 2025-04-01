@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -51,6 +51,21 @@ const router = createRouter({
       path: '/update-voucher/:id',
       name: 'update-voucher',
       component: () => import('../views/admin/AddVoucherPage.vue'),
+    },
+    {
+      path: '/discount',
+      name: 'discount',
+      component: () => import('../views/admin/DiscountPage.vue'),
+    },
+    {
+      path: '/add-discount',
+      name: 'add-discount',
+      component: () => import('../views/admin/FormDiscount.vue'),
+    },
+    {
+      path: '/update-discount/:id',
+      name: 'update-discount',
+      component: () => import('../views/admin/FormDiscount.vue'),
     },
 
 

@@ -7,6 +7,7 @@ const userRoutes = require("./routers/userRouter"); // Định nghĩa các API e
 
 const attributeRoutes = require("./routers/productAtrributeRouter");
 const voucherRouters = require("./routers/voucherRouter");
+const discountRouters = require("./routers/discountRouter");
 
 const app = express();
 connectDB();
@@ -17,6 +18,7 @@ app.use("/api/users", userRoutes);// Định nghĩa API user (base URL: /api/use
 
 app.use("/attribute", attributeRoutes);
 app.use("/voucher", voucherRouters);
+app.use("/discount", discountRouters);
 
 const PORT = process.env.PORT || 5000; //Lấy PORT từ biến môi trường hoặc mặc định 5000.
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); //Chạy server và lắng nghe kết nối từ client trên port 5000.
