@@ -42,7 +42,7 @@
 
         <div class="mt-2 text-align">
           <button class="btn btn-outline-primary m-3" @click="goBack">Hủy</button>
-          <button class="btn btn-primary" @click="updateVoucher">Lưu</button>
+          <button class="btn btn-primary" @click="save">Lưu</button>
         </div>
 
       </div>
@@ -119,7 +119,7 @@ const formattedEndDate = computed({
   }
 });
 
-const updateVoucher = async () => {
+const save = async () => {
   let response;
   if(route.params.id ) {
     response =await voucherService.updateVoucher(

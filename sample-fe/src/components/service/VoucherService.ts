@@ -47,7 +47,7 @@ class VoucherService {
                       endDate: Date,
                       status: string
   ) {
-    const res = await axios.put(`${this.ROOT_API}/`, {
+    const res = await axios.post(`${this.ROOT_API}/add`, {
       code,
       condition,
       type,

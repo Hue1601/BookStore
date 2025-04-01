@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
     const {code, condition, type, value, maxValue, quantity, startDate, endDate, status} = req.body;
     const voucher = new Voucher({code, condition, type, value, maxValue, quantity, startDate, endDate, status});
     await voucher.save();
