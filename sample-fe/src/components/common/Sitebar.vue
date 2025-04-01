@@ -10,8 +10,14 @@
       <img alt="" src="../list-icon/Polygon%209.png" class="icon-dropdown"/>
     </div>
     <div v-if="isProductManagement" style="text-align: end">
-      <button class="btn-sitebar option">Quản lý sản phẩm</button>
-      <button class="btn-sitebar option">Quản lý thuộc tính</button>
+      <router-link to="/product-management">
+        <button class="btn-sitebar option" >Quản lý sản phẩm</button>
+      </router-link>
+
+      <router-link to="/attribute">
+        <button class="btn-sitebar option" >Quản lý thuộc tính</button>
+      </router-link>
+
     </div>
 
     <div class="btn-sitebar btn-dropdown "  @click="showDiscountManage" >
@@ -19,7 +25,10 @@
       <img alt="" src="../list-icon/Polygon%209.png" class="icon-dropdown"/>
     </div>
     <div v-if="isDiscountManagement" style="text-align: end">
-      <button class="btn-sitebar option">Phiếu giảm giá</button>
+      <router-link to="/voucher">
+        <button class="btn-sitebar option">Phiếu giảm giá</button>
+      </router-link>
+
       <button class="btn-sitebar option">Đợt giảm giá</button>
     </div>
 

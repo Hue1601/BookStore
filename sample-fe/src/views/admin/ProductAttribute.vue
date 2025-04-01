@@ -1,6 +1,5 @@
 <template>
   <Header/>
-
   <div class="d-flex" style="height: 92vh;">
     <Sitebar/>
     <div class="product-management">
@@ -8,7 +7,7 @@
       <div class="d-flex">
 
         <!--        author-->
-        <div class="attribute-content margin-right">
+        <div class="attribute-content margin-right box-shadow">
           <table class="table" style="margin-bottom: 0">
             <thead>
             <tr>
@@ -32,7 +31,7 @@
         </div>
 
         <!--        category-->
-        <div class="attribute-content">
+        <div class="attribute-content box-shadow">
           <table class="table" style="margin-bottom: 0">
             <thead>
             <tr>
@@ -57,7 +56,7 @@
       </div>
 
       <div class="list-publisher">
-        <div class="attribute-content">
+        <div class="attribute-content box-shadow">
           <table class="table" style="margin-bottom: 0">
             <thead>
             <tr>
