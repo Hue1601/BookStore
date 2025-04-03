@@ -116,14 +116,7 @@ const save = async () => {
   errors.value = {}
   const currentDate = new Date();
   let response;
-  if (!startDate.value >= !endDate.value) {
-    errors.value.startDate = "Ngày bắt đầu phải nhỏ hơn ngày kết thúc.";
-    return;
-  }
-  if (!endDate.value < !currentDate) {
-    errors.value.endDate = "Ngày kết thúc phải bằng hoặc lớn hơn ngày hiện tại.";
-    return;
-  }
+
   try {
     if (route.params.id) {
       response = await discountService.update(route.params.id as string,
@@ -137,8 +130,8 @@ const save = async () => {
       response = await discountService.add(
         name.value,
         discountRate.value,
-        startDate.value ?? new Date(),
-        endDate.value ?? new Date(),
+        startDate.value ?? new Date(""),
+        endDate.value ?? new Date(""),
         status.value,
       );
     }

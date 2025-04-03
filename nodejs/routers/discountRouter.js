@@ -12,19 +12,34 @@ router.get('/', async (req, res) => {
     }
 })
 const validateDiscountDates = (startDate, endDate) => {
-   const currentDate= new Date();
+    const currentDate = new Date();
+    const errors = {};
+
     if (startDate >= endDate) {
-        throw new Error('Ngày bắt đầu phải nhỏ hơn ngày kết thúc');
+        errors.startDate = 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc';
     }
-    if(new Date(endDate) < currentDate) {
-        throw new Error('Ngày kết thúc phải bằng hoặ lớn hơn ngày hiện tại');
+    if (new Date(endDate) < currentDate) {
+        errors.endDate = 'Ngày kết thúc phải bằng hoặc lớn hơn ngày hiện tại';
     }
+
+    if (Object.keys(errors).length > 0) {
+        return errors;
+    }
+    return null;
 };
+
 router.post("/add", async (req, res) => {
     try {
-        const {name, discountRate, startDate, endDate,status} = req.body;
-        const newDiscount = new Discount({name, discountRate, startDate, endDate,status});
-        validateDiscountDates(new Date(startDate), new Date(endDate));
+        const { name, discountRate, startDate, endDate, status } = req.body;
+        const newDiscount = new Discount({ name, discountRate, startDate, endDate, status });
+        await newDiscount.validate();
+
+        const dateErrors= validateDiscountDates(new Date(startDate), new Date(endDate));
+
+        if (dateErrors) {
+            return res.status(400).json({ errors: dateErrors });
+        }
+
         await newDiscount.save();
         res.status(200).json(newDiscount);
     } catch (e) {
@@ -37,9 +52,10 @@ router.post("/add", async (req, res) => {
             return res.status(400).json({ errors });
         }
 
-         res.status(500).json({message: e.message});
+        res.status(500).json({ message: e.message });
     }
-})
+});
+
 
 router.get('/:id', async (req, res) => {
     try {
