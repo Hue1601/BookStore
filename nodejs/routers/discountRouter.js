@@ -32,10 +32,9 @@ router.post("/add", async (req, res) => {
     try {
         const { name, discountRate, startDate, endDate, status } = req.body;
         const newDiscount = new Discount({ name, discountRate, startDate, endDate, status });
+
         await newDiscount.validate();
-
         const dateErrors= validateDiscountDates(new Date(startDate), new Date(endDate));
-
         if (dateErrors) {
             return res.status(400).json({ errors: dateErrors });
         }
@@ -43,19 +42,21 @@ router.post("/add", async (req, res) => {
         await newDiscount.save();
         res.status(200).json(newDiscount);
     } catch (e) {
-        if (e instanceof mongoose.Error.ValidationError) {
-            const errors = Object.keys(e.errors).reduce((acc, field) => {
-                acc[field] = e.errors[field].message;
-                return acc;
-            }, {});
-
-            return res.status(400).json({ errors });
-        }
-
-        res.status(500).json({ message: e.message });
+        alertError(e,res)
     }
 });
+const alertError=(e,res) =>{
+    if (e instanceof mongoose.Error.ValidationError) {
+        const errors = Object.keys(e.errors).reduce((acc, field) => {
+            acc[field] = e.errors[field].message;
+            return acc;
+        }, {});
 
+        return res.status(400).json({ errors });
+    }
+
+    res.status(500).json({ message: e.message });
+}
 
 router.get('/:id', async (req, res) => {
     try {
@@ -71,9 +72,17 @@ router.put("/:id", async (req, res) => {
     try {
         const {id} = req.params;
         const {name, discountRate, startDate, endDate,status} = req.body;
+
         const discount = await Discount.findByIdAndUpdate(id, {name, discountRate, startDate, endDate,status}, {new: true})
-        res.status(200).json(discount)
+        await discount.validate();
+        const dateErrors= validateDiscountDates(new Date(startDate), new Date(endDate));
+        if (dateErrors) {
+            return res.status(400).json({ errors: dateErrors });
+        }
+
+            res.status(200).json(discount)
     } catch (e) {
+       alertError(e,res)
         res.status(500).json({message: e.message});
     }
 })
