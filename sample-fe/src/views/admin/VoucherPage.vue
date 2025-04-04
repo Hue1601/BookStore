@@ -58,7 +58,7 @@ import Header from "@/components/common/Header.vue";
 import {useRouter} from "vue-router";
 import {voucherService} from "@/components/service/VoucherService.ts";
 import {computed, onMounted, ref} from "vue";
-import {type Voucher} from "@/components/interface/admin/voucher.ts";
+import {type Voucher} from "@/components/interface/admin/admin.ts";
 
 const router = useRouter()
 const voucher = ref<Voucher[]>([])
@@ -86,8 +86,7 @@ const filteredVoucher = computed(() =>{
     return voucher.value
   }
   return voucher.value.filter((data) =>
-    data.code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      data.value.toString().includes(searchQuery.value.toLowerCase())
+    data.code.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
 })
 

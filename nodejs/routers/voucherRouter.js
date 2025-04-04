@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const mongoose = require('mongoose')
 const Voucher = require('../models/Voucher')
 
 router.get("/", async (req, res) => {
@@ -12,10 +13,22 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/add", async (req, res) => {
-    const {code, condition, type, value, maxValue, quantity, startDate, endDate, status} = req.body;
-    const voucher = new Voucher({code, condition, type, value, maxValue, quantity, startDate, endDate, status});
-    await voucher.save();
-    res.status(200).json(voucher);
+   try {
+       const {code, condition, type, value, maxValue, quantity, startDate, endDate, status} = req.body;
+       const voucher = new Voucher({code, condition, type, value, maxValue, quantity, startDate, endDate, status});
+       await voucher.validate()
+       await voucher.save();
+       res.status(200).json(voucher);
+   }catch(e) {
+       if(e instanceof mongoose.Error.ValidationError){
+           const errors = Object.keys(e.errors).reduce((acc,field) =>{
+               acc[field] = e.errors[field].message;
+               return acc;
+           },{});
+           return res.status(400).json({ errors });
+       }
+       res.status(500).json({error: err.message});
+   }
 })
 router.get("/:id", async (req, res) => {
    try {

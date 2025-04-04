@@ -114,7 +114,6 @@ const formattedEndDate = computed({
 
 const save = async () => {
   errors.value = {}
-  const currentDate = new Date();
   let response;
 
   try {
